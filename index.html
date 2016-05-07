@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html ng-app="conf">
+    <head>
+        <!-- Meta -->
+        <title ng-bind="title + '- PC-Konfigurator | SkyTeck Dein Wunsch PC System'">Lädt . . .</title>
+        <meta charset="UTF-8" />
+
+        <!-- <link rel="icon" href="../../assets/img/logo.png" type="image/png">-->
+        <!-- <link rel="canocial" href="https://sky-teck.net/">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- SEO -->
+        <meta name="description" content="Unser Konfigurator für den perfecten PC | SkyTeck - sky-teck.net" />
+        <meta name="theme-color" content="#21c2ca"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Konfigurator | SkyTeck" />
+        <meta property="og:site_name" content="SkyTeck" />
+        <meta property="og:locality" content="Germany"/>
+        <meta property="og:url" content="http://sky-teck.net" />
+
+        <!-- Einmalig JE Seite -->
+        <meta property="og:description" content="Unser Konfigurator für den perfecten PC | SkyTeck - sky-teck.net" />
+        <meta property="fb:app_id" content="">
+        <meta property="og:type" content="business.business">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="//sky-teck.net/assets/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+        <!-- NoScript -->
+        <noscript>
+        <meta http-equiv="refresh" content="0; URL=/noscript/"/>
+        </noscript>
+
+        <!-- Angular -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+        <script src="assets/angular/controller.js"></script>
+        <script src="assets/angular/komponenten.js"></script>
+        <script src="assets/angular/filter.js"></script>
+        <script src="assets/angular/app.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <style>
+            /* Eigenes CSS */
+            body {
+                font-size: 20px;
+            }
+            table {
+                width: 100%;
+            }
+            .table-hover tr:hover .conf-item {
+                opacity: 1;
+                cursor: pointer;
+            }
+            .table-hover tr:hover {
+                cursor: pointer;
+            }
+            .conf-item {
+                opacity: 0.3;
+            }
+            .item-is-active {
+                border: 1px solid rgba(78, 119, 204, 0.9);
+                padding: 10px;
+                opacity: 1;
+            }
+
+            .next {
+                right: 0;
+
+            }
+            .prev {
+                left: 0;
+            }
+            .prev,.next {
+                position: absolute;
+                top:0;
+                bottom: 0;
+                margin: auto;
+                height: 100px;
+                width: 100px;
+                /* background: rgba(78, 119, 204, 0.9);*/
+                color: rgba(78, 119, 204, 0.9);
+                z-index: 1000;
+
+                opacity: 0.4;
+            }
+            .prev:hover,.next:hover {
+                opacity: 1;
+            }
+
+            .ergebnis {
+                background: rgba(78, 119, 204, 0.9);
+                color: white;
+            }
+
+            .fortschritt * {
+                height: 5vh;
+            }
+            html,body {
+                overflow-x:hidden;
+            }
+            .configurator {
+                padding-bottom: 70px;
+            }
+            .hidden {
+                visibility: hidden;
+            }
+            #info-screen  {
+                position: absolute;
+                width: 100vw;
+                height: 100vh;
+                bottom: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.5);
+                color: white;
+                visibility: hidden;
+                overflow: hidden;
+                z-index: 1001;
+
+            }
+            .textbox {
+                padding: 10px;
+                padding-top: 20px;
+            }
+            .right {
+                float: right;
+                right: 10px;
+            }
+            #display {
+                margin: auto;
+            }
+            .navbar-center {
+                text-align: center;
+                cursor: pointer;
+                color: white;
+            }
+            .navbar-center:hover,.navbar-center:hover li a {
+                background: rgba(78, 119, 204, 0.9);
+                color: white;
+            }
+            .close {
+                background: rgba(78, 119, 204, 0.9);
+                color: white;
+                text-decoration: none;
+                width: 100%;
+            }
+            #hide {
+                width: 100%;
+            }
+            .infotable tr:nth-child(odd) {
+                background-color: cornflowerblue;
+                color: white;
+            }
+        </style>
+    </head>
+    <body >
+
+        <!-- Statusleiste -->
+        <div ng-controller="statusctrl" ng-hide="global.mobile == true">
+            <div class="fortschritt">
+                <div class="progress">
+                    <div id="progress" class="progress-bar" role="progressbar"  style="width: {{global.status}}%">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./ Statusleiste -->
+
+        <!-- View und nex/prev-Button -->
+        <div class ="configurator" >
+            <span ng-controller="navigationctrl">
+                <a ng-hide="global.next_invisible" ng-href="{{global.next}}"><span class="next"><i class="fa fa-fw  fa-angle-double-right fwhite fa-4x"></i></span></a>
+                <a ng-hide="global.prev_invisible" ng-href="{{global.prev}}"><span class="prev"><i class="fa fa-fw  fa-angle-double-left fwhite fa-4x"></i></span></a>
+            </span>
+            <div class="container" >
+                <h1 ng-bind="title"></h1>
+                <div ng-view></div>
+            </div>
+        </div>
+        <!-- ./ View und nex/prev-Button -->
+
+        <!-- Auswahlanzeige -->
+        <div  ng-controller="ergebnisctrl" ng-hide="global.mobile">
+            <div style="visibility: hidden;" id="info-screen" class="info-screen">
+
+                <a id="hide" class="btn btn-danger"><i class="fa fa-angle-double-down"></i>  Minimieren <i class="fa fa-angle-double-down"></i> </a>
+
+                <div class="textbox">
+                    <h2>Gehäuse:</h2> <p>{{global.gehauese.hersteller}} {{global.gehauese.bez}}</p>
+
+                    <h2>Motherboard:</h2><p>{{global.motherboard.hersteller}} {{global.motherboard.bez}}</p>
+
+                    <h2>CPU:</h2><p>{{global.cpu.hersteller}} {{global.cpu.Model}}</p>
+
+                    <h2>CPU-Kühler:</h2><p>{{global.cpucooler.hersteller}} {{global.cpucooler.Model}}</p>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="mobile" class="navbar navbar-inverse navbar-fixed-bottom chooses" >
+            <ul id="display" class="nav navbar-center dropdown dropdown-horizontal dropdown-upward" ng-hide="global.mobile == true">
+                <li>
+                    <a class="h4"><i class="fa fa-angle-double-up"></i> Aktuelle Komponentenübersicht <i class="fa fa-angle-double-up"></i> </a>
+                </li>
+            </ul>
+        </div>
+        <!-- ./ Auswahlanzeige -->
+
+        <script>
+            $(document).ready(function () {
+                $(document).on("click", "#display", function () {
+
+                    $("#info-screen").css("visibility", "visible");
+                    $("#info-screen").animate({height: "100%"}, 1000);
+
+                    $("#display").css("visibility", "hidden");
+                    $("#hide").css("visibility", "visible");
+
+                });
+                $(document).on("click", "#hide", function () {
+                    $("#info-screen").css("visibility", "visible");
+                    $("#info-screen").animate({height: "0"}, 1000);
+
+                    $("#display").css("visibility", "visible");
+                    $("#hide").css("visibility", "hidden");
+
+                });
+            });
+        </script>
+    </body>
+
+</html>

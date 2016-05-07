@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Gehäuse:</th>
+            <td>{{ global.gehauese.hersteller}} {{ global.gehauese.bez}}</td>
+            <td> <span ng-bind="global.gehauese.Preis| number:2"></span> €</td>
+        </tr>
+        <tr>
+            <th> Motherboard:</th>
+            <td>{{ global.motherboard.hersteller}} {{ global.motherboard.bez}}</td>
+            <td><span ng-bind="motherboard.Preis | number:2"></span> €</td>
+        </tr>
+        <tr>
+            <th> CPU:</th>
+            <td>{{ global.cpu.hersteller}} {{ global.cpu.Model}}</td>
+            <td><span ng-bind="cpu.Preis | number:2"></span> €</td>
+        </tr>
+        <tr>
+            <th> CPU-Kühler:</th>
+            <td>{{ global.cpucooler.hersteller}} {{ global.cpucooler.Model}}</td>
+            <td><span ng-bind="cpucooler.Preis | number:2"></span> €</td>
+        </tr>
+        <tr class="ergebnis" >
+            <th colspan="2" >Gesamt:</th><td><span ng-bind="preis() | number:2"></span> €</td>
+        </tr>
+    </table>
+</div>

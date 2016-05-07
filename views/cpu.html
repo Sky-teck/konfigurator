@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="col-md-5" >
+        <input placeholder="Suchen Sie etwas?" class="form-control" ng-model="suchbegriff">
+        <div style="overflow-y: scroll; height: 70vh;">
+            <table class="table table-hover" >
+                <thead>
+                    <tr>
+                        <th>Vorschaubild</th>
+                        <th>Hersteller</th>
+                        <th>Bezeichnung</th>
+                        <th>Typ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="c in global.cpus| filter:suchbegriff |filter:PasstForm()" ng-click="Waehlecpu(c)" >
+                        <td><img width="100" height="100" class=" conf-item {{ c.ID == global.cpu.ID ? 'item-is-active' : ''}}"   src=" {{c.Bild}}" alt="{{c.Model}}"></td>
+                        <td>{{ c.hersteller}}</td>
+                        <td>{{ c.Model}}</td>
+                        <td>{{ c.Sockel}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7" ng-hide="global.cpu == -1">
+        <img width="400" height="400" ng-src="{{global.cpu.Bild}}" alt="{{global.cpu.Model}}">
+        <table class="table infotable">
+            <tr>
+                <th>Hersteller</th>
+                <td>{{global.cpu.hersteller}}</td>
+            </tr>
+            <tr>
+                <th>Bezeichnung</th>
+                <td>{{global.cpu.Model}}</td>
+            </tr>
+            <tr>
+                <th>Sockel</th>
+                <td>{{global.cpu.Sockel}}</td>
+            </tr>
+            <tr>
+                <th>Anzahl der CPU Kerne</th>
+                <td>{{global.cpu.Core}}x</td>
+            </tr>
+            <tr>
+                <th>Prozessortakt</th>
+                <td>{{global.cpu.takt}}</td>
+            </tr>
+            <tr>
+                <th>Max. Turbotakt</th>
+                <td>{{global.cpu.tutakt}}</td>
+            </tr>
+            <tr>
+                <th>Preis</th>
+                <td>{{global.cpu.Preis}} €</td>
+            </tr>
+        </table>
+    </div>
+</div>

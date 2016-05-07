@@ -1,0 +1,48 @@
+.header-main {
+    position: absolute;
+    width: 100%;
+    background-color: #0489B1;
+    overflow: hidden;
+    max-height: 80px;
+}
+
+.header-main a {
+    position: relative;
+    float: left;
+    margin-left: 24px;
+    display: block;
+    z-index: 1;
+}
+
+.header-main img {
+    height: 5vh;
+    width: auto;
+    padding: 5px;
+}
+
+.screen-main {
+    width: 100%;
+    margin-top: 80px;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.hirstory-container {
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    max-height: 80px;
+    background: #0489B1;
+    margin: auto;
+    position: fixed;
+    top: auto;
+    width: 100%;
+}
+
+.hirstory-container h3 {
+    font-size: 20px;
+    padding-bottom: 5px;
+}

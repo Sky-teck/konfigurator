@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="col-md-5" >
+        <input placeholder="Suchen Sie etwas?" class="form-control" ng-model="suchbegriff">
+        <div style="overflow-y: scroll; height: 70vh;">
+            <table class="table table-hover" >
+                <thead>
+                    <tr>
+                        <th>Vorschaubild</th>
+                        <th>Hersteller</th>
+                        <th>Bezeichnung</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="cc in global.cpucoolers| filter:suchbegriff |filter:PasstKuehler()" ng-click="Waehlecpucooler(cc)" >
+                        <td><img width="100" height="100" class=" conf-item {{ cc.ID == global.cpucooler.ID ? 'item-is-active' : ''}}"   src=" {{cc.Bild}}" alt="{{cc.Model}}"></td>
+                        <td>{{ cc.hersteller}}</td>
+                        <td>{{ cc.Model}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="col-md-7" ng-hide="global.cpucooler == -1">
+        <img width="400" height="400" ng-src="{{global.cpucooler.Bild}}" alt="{{global.cpucooler.Model}}">
+        <table class="table infotable">
+            <tr>
+                <th>Hersteller</th>
+                <td>{{global.cpucooler.hersteller}}</td>
+            </tr>
+            <tr>
+                <th>Bezeichnung</th>
+                <td>{{global.cpucooler.Model}}</td>
+            </tr>
+            <tr>
+                <th>Sockel</th>
+                <td> <span ng-repeat="sock in global.cpucoolersock| filter: {id:cpucooler.ID}"> {{ sock.sockel}}</span></td>
+            </tr>
+            <tr>
+                <th>Lüfter U/min</th>
+                <td>{{global.cpucooler.umin}}</td>
+            </tr>
+            <tr>
+                <th>Lüfter dB(A)</th>
+                <td>{{global.cpucooler.db}}</td>
+            </tr>
+            <tr>
+                <th>Luftfördermenge</th>
+                <td>{{global.cpucooler.airflow}}</td>
+            </tr>
+            <tr>
+                <th>Preis</th>
+                <td>{{global.cpucooler.Preis}} €</td>
+            </tr>
+        </table>
+    </div>
+</div>

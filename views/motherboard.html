@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="col-md-5" >
+        <input placeholder="Suchen Sie etwas?" class="form-control" ng-model="suchbegriff">
+        <div style="overflow-y: scroll; height: 70vh;">
+            <table class="table table-hover" >
+                <thead>
+                    <tr>
+                        <th>Vorschaubild</th>
+                        <th>Hersteller</th>
+                        <th>Bezeichnung</th>
+                        <th>Sockel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="m in global.motherboards| filter:suchbegriff |filter:PasstForm()" ng-click="WaehleMotherboard(m)" >
+                        <td><img width="100" height="100" class=" conf-item {{ m.ID == global.motherboard.ID ? 'item-is-active' : ''}}"   src=" {{m.Bild}}" alt="{{m.bez}}"></td>
+                        <td>{{ m.hersteller}}</td>
+                        <td>{{ m.bez}}</td>
+                        <td>{{ m.Sockel}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-7" ng-hide="global.motherboard == -1">
+        <img width="400" height="400" ng-src="{{global.motherboard.Bild}}" alt="{{global.motherboard.bez}}">
+        <table class="table infotable">
+            <tr>
+                <th>Hersteller</th>
+                <td>{{global.motherboard.hersteller}}</td>
+            </tr>
+            <tr>
+                <th>Bezeichnung</th>
+                <td>{{global.motherboard.bez}}</td>
+            </tr>
+            <tr>
+                <th>Formfaktor(en)</th>
+                <td>{{global.motherboard.Formfaktor}}</td>
+            </tr>
+            <tr>
+                <th>Sockel</th>
+                <td>{{global.motherboard.Sockel}}</td>
+            </tr>
+            <tr>
+                <th>DDR</th>
+                <td>{{global.motherboard.DDR}}</td>
+            </tr>
+            <tr>
+                <th>RAM-Kombination</th>
+                <td>{{global.motherboard.abmanf}}</td>
+            </tr>
+            <tr>
+                <th>PCI-Anschlüsse:</th>
+                <td>{{global.motherboard.pci}}</td>
+            </tr>
+            <tr>
+                <th>Audio</th>
+                <td>{{global.motherboard.audio}}</td>
+            </tr>
+            <tr>
+                <th>BIOS</th>
+                <td>{{global.motherboard.BIOS}}</td>
+            </tr>
+            <tr>
+                <th>USB 2.0 Anschlüsse</th>
+                <td>{{global.motherboard.usb2}}</td>
+            </tr>
+            <tr>
+                <th>USB 3.0 Anschlüsse</th>
+                <td>{{global.motherboard.usb3}}</td>
+            </tr>
+            <tr>
+                <th>Preis</th>
+                <td>{{global.motherboard.Preis}} €</td>
+            </tr>
+        </table>
+    </div>
+</div>
+

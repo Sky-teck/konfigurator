@@ -1,0 +1,70 @@
+<div class="container-fluid">
+
+    <div class="col-md-5" >
+        <input placeholder="Suchen Sie etwas?" class="form-control" ng-model="suchbegriff">
+        <div style="overflow-y: scroll; height: 70vh;">
+            <table  border="0" class="table table-hover" >
+                <thead>
+                    <tr>
+                        <th>Vorschaubild</th>
+                        <th>Hersteller</th>
+                        <th>Bezeichnung</th>
+                        <th>Typ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="g in global.alle_gehauese| filter:suchbegriff" ng-click="WaehleGehauese(g)">
+                        <td><img width="100" height="100" class=" conf-item {{ g.ID == gehauese.ID ? 'item-is-active' : ''}}"   src=" {{g.Bild}}" alt="{{g.bez}}"></td>
+                        <td>{{ g.hersteller}}</td>
+                        <td>{{ g.bez}}</td>
+                        <td>{{ g.Typ}}</td>
+                        <!-- trash -->
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-7" ng-hide="global.gehauese == -1">
+        <img width="400" height="400"  ng-src="{{global.gehauese.Bild}}" alt="{{global.gehauese.bez}}">
+        <table class="table  infotable">
+            <tr>
+                <th>Hersteller</th>
+                <td>{{global.gehauese.hersteller}}</td>
+            </tr>
+            <tr>
+                <th>Bezeichnung</th>
+                <td>{{global.gehauese.bez}}</td>
+            </tr>
+            <tr>
+                <th>Typ</th>
+                <td>{{global.gehauese.Typ}}</td>
+            </tr>
+
+            <!-- <tr>
+                 <th>Farbe</th>
+                 <td>{{global.gehauese.Farbe}}</td>
+             </tr>
+             <tr>
+                 <th> Fenster </th>
+                 <td>{{global.gehauese.Fenster}}</td>
+             </tr>-->
+            <tr>
+                <th>Front</th>
+                <td>{{global.gehauese.Front}}</td>
+            </tr>
+            <tr>
+                <th>Formfaktor(en)</th>
+                <td> <span ng-repeat="ff in global.formfaktoren| filter: gehauese.ID"> {{ ff.form}}</span></td>
+            </tr>
+            <tr>
+                <th> Anzahl Lüfter </th>
+                <td>{{global.gehauese.Luefter}}</td>
+            </tr>
+            <tr>
+                <th>Preis</th>
+                <td>{{global.gehauese.Preis| number:2}} €</td>
+            </tr>
+        </table>
+    </div>
+</div>

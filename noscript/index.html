@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Meta -->
+        <title ng-bind="title">Bitte aktivieren Sie JavaScript - PC-Konfigurator | SkyTeck Dein Wunsch PC System</title>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="../../assets/img/logo.png" type="image/png">
+        <!-- <link rel="canocial" href="https://sky-teck.net/">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- SEO -->
+        <meta name="description" content="Unser Konfigurator für den perfecten PC | SkyTeck - sky-teck.net" />
+        <meta name="theme-color" content="#21c2ca"/>
+        <meta name="robots" content="index, follow"/>
+        <meta property="og:title" content="Konfigurator | SkyTeck" />
+        <meta property="og:site_name" content="SkyTeck" />
+        <meta property="og:locality" content="Germany"/>
+        <meta property="og:url" content="http://sky-teck.net" />
+
+        <!-- Einmalig JE Seite -->
+        <meta property="og:description" content="Unser Konfigurator für den perfecten PC | SkyTeck - sky-teck.net" />
+        <meta property="fb:app_id" content="">
+        <meta property="og:type" content="business.business">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stocki.teammeininter.net/assets/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+
+        <!-- JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+
+        <!-- NoScript -->
+        <noscript>
+        <meta http-equiv="refresh" content="0; URL=/noscript/"/>
+        </noscript>
+
+        <!-- CustomCSS-->
+        <style>
+            * {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="text">
+            <h1 class="text-danger">Sie haben Kein JavaScript aktiviert.</h1>
+            <h2>
+                Bitte machen Sie es an und laden Sie diese Seite neu, oder Sie können
+                leider den <strong>tollen</strong> Konfigurator nicht benutzen!
+            </h2>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $("#text").html(' <h1 class="text-success">Sie haben JavaScript erfolgreich aktiviert.</h1>' +
+                        ' <h2>' +
+                        'Warum nicht gleich? ;) - Nu gut, sie werden aufjedenfall wieder zum Konfigurator zurückgebracht.' +
+                        '</h2>');
+                setTimeout(function () {
+                    window.location = "../";
+                }, 10000)
+            });
+        </script>
+    </body>
+</html>
+
